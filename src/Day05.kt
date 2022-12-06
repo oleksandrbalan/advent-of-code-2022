@@ -21,7 +21,7 @@ fun main() {
             moveByOne(count, from - 1, to - 1)
         }
     }
-    println(shipPart1.peek())
+    println("Part1: ${shipPart1.peek()}")
 
     val shipPart2 = Ship(List(stacks) { LinkedList() }).apply {
         init(shipCargo)
@@ -30,10 +30,10 @@ fun main() {
             moveMany(count, from - 1, to - 1)
         }
     }
-    println(shipPart2.peek())
+    println("Part2: ${shipPart2.peek()}")
 }
 
-data class Ship(
+private data class Ship(
     val stacks: List<Deque<Char>>
 ) {
     fun init(cargo: List<List<Char>>) {

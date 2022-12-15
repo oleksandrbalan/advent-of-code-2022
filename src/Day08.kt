@@ -73,41 +73,6 @@ private fun computeHeights(
     }
 }
 
-private data class IntMatrix(
-    val rows: Int,
-    val columns: Int,
-    val init: (Int, Int) -> Int = { _, _ -> 0 }
-) {
-    private val data: Array<IntArray> = Array(rows) { row ->
-        IntArray(columns) { column ->
-            init(row, column)
-        }
-    }
-
-    fun get(row: Int, column: Int): Int =
-        data[row][column]
-
-    fun set(row: Int, column: Int, value: Int) {
-        data[row][column] = value
-    }
-
-    override fun toString(): String = buildString {
-        repeat(rows) { row ->
-            repeat(columns) { column ->
-                appendLine("$row x $column = ${get(row, column)}")
-            }
-        }
-    }
-}
-
-private fun IntMatrix.asSequence(): Sequence<Int> = sequence {
-    repeat(rows) { row ->
-        repeat(columns) { column ->
-            yield(get(row, column))
-        }
-    }
-}
-
 private fun Array<Int>.fill(to: Int, value: Int) {
     repeat(to + 1) {
         set(it, value)
